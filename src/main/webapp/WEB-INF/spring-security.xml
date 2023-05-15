@@ -1,0 +1,43 @@
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	<http auto-config='true'>
+
+		<intercept-url pattern="/csp/*"
+			access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/customer/*"
+			access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/resources/**"
+			access="permitAll" />
+
+		<!-- <intercept-url pattern="/secured/*" access="ROLE_ADMIN" /> <form-login 
+			login-page="/login" default-target-url="/secured/home" authentication-failure-url="/loginError" 
+			/> -->
+
+
+	
+
+		<form-login login-page="/login"
+			default-target-url="/redirect"
+			authentication-success-handler-ref="customAuthenticationSuccessHandler"
+			authentication-failure-url="/loginError" />
+		<logout logout-success-url="/"
+			logout-url="/j_spring_security_logout" />
+		<csrf disabled="true" />
+	</http>
+	<beans:bean id="customAuthenticationSuccessHandler" class="com.rms.authentication.provider.CustomAuthenticationSuccessHandler" />
+
+	<authentication-manager erase-credentials="true">
+		<authentication-provider
+			ref="customAuthenticationProvider">
+
+		</authentication-provider>
+	</authentication-manager>
+
+</beans:beans>
