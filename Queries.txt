@@ -1,0 +1,38 @@
+CREATE TABLE Customer (
+  customer_id INT PRIMARY KEY,
+  customer_name VARCHAR(50),
+  email VARCHAR(100),
+  phone_number VARCHAR(20),
+  shipping_address VARCHAR(200),
+  billing_address VARCHAR(200),
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+
+INSERT INTO `users` (user_id, password, enabled, email, firstname, lastname)
+VALUES
+  ('JD001', 'password1', 'true', 'john.doe@example.com', 'John', 'Doe'),
+  ('JS002', 'password2', 'true', 'jane.smith@example.com', 'Jane', 'Smith'),
+  ('MJ003', 'password3', 'true', 'michael.johnson@example.com', 'Michael', 'Johnson'),
+  ('ED004', 'password4', 'true', 'emily.davis@example.com', 'Emily', 'Davis'),
+  ('RW005', 'password5', 'true', 'robert.wilson@example.com', 'Robert', 'Wilson'),
+  ('OB006', 'password6', 'true', 'olivia.brown@example.com', 'Olivia', 'Brown'),
+  ('WT007', 'password7', 'true', 'william.taylor@example.com', 'William', 'Taylor'),
+  ('SA008', 'password8', 'true', 'sophia.anderson@example.com', 'Sophia', 'Anderson'),
+  ('JC009', 'password9', 'true', 'james.clark@example.com', 'James', 'Clark'),
+  ('AH010', 'password10', 'true', 'ava.hernandez@example.com', 'Ava', 'Hernandez');
+  
+  
+INSERT INTO Customer (customer_id, customer_name, email, phone_number, shipping_address, billing_address)
+VALUES
+  ('JD001', 'John Doe', 'john.doe@example.com', '1234567890', '123 Street, City', '456 Street, City'),
+  ('JS002', 'Jane Smith', 'jane.smith@example.com', '9876543210', '456 Avenue, Town', '789 Avenue, Town'),
+  ('MJ003', 'Michael Johnson', 'michael.johnson@example.com', '5555555555', '789 Road, Village', '123 Road, Village'),
+  ('ED004', 'Emily Davis', 'emily.davis@example.com', '9999999999', '321 Lane, County', '654 Lane, County'),
+  ('RW005', 'Robert Wilson', 'robert.wilson@example.com', '1111111111', '654 Court, State', '987 Court, State'),
+  ('OB006', 'Olivia Brown', 'olivia.brown@example.com', '2222222222', '987 Drive, Province', '321 Drive, Province'),
+  ('WT007', 'William Taylor', 'william.taylor@example.com', '3333333333', '123 Place, Country', '654 Place, Country'),
+  ('SA008', 'Sophia Anderson', 'sophia.anderson@example.com', '4444444444', '456 Square, Continent', '789 Square, Continent'),
+  ('JC009', 'James Clark', 'james.clark@example.com', '5555555555', '789 Terrace, Planet', '123 Terrace, Planet'),
+  ('AH010', 'Ava Hernandez', 'ava.hernandez@example.com', '6666666666', '123 Avenue, Galaxy', '456 Avenue, Galaxy');
