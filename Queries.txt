@@ -36,3 +36,77 @@ VALUES
   ('SA008', 'Sophia Anderson', 'sophia.anderson@example.com', '4444444444', '456 Square, Continent', '789 Square, Continent'),
   ('JC009', 'James Clark', 'james.clark@example.com', '5555555555', '789 Terrace, Planet', '123 Terrace, Planet'),
   ('AH010', 'Ava Hernandez', 'ava.hernandez@example.com', '6666666666', '123 Avenue, Galaxy', '456 Avenue, Galaxy');
+
+
+CREATE TABLE `orders` (
+  `order_id` varchar(45) NOT NULL,
+  `customer_id` varchar(45) NOT NULL,
+  `order_date` date DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `eligible_for_return` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `customer_id` (`customer_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+)
+
+
+INSERT INTO orders (order_id, customer_id, order_date, status, eligible_for_return)
+VALUES
+  ('ORD001', 'JD001', '2023-01-15', 'Pending', 1),
+  ('ORD002', 'JS002', '2023-02-10', 'Shipped', 0),
+  ('ORD003', 'MJ003', '2023-03-05', 'Delivered', 1),
+  ('ORD004', 'ED004', '2023-04-20', 'Pending', 1),
+  ('ORD005', 'RW005', '2023-05-01', 'Shipped', 0),
+  ('ORD006', 'OB006', '2023-06-10', 'Delivered', 1),
+  ('ORD007', 'WT007', '2023-07-15', 'Pending', 1);
+
+CREATE TABLE ReturnOrder (
+  return_id VARCHAR(45) PRIMARY KEY NOT NULL,
+  order_id VARCHAR(45) NOT NULL,
+  return_date DATE,
+  return_status VARCHAR(50),
+  FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+
+INSERT INTO ReturnOrder (return_id, order_id, return_date, return_status)
+ VALUES
+ ('RET001', 'ORD001', '2023-01-20', 'Pending'),
+ ('RET002', 'ORD002', '2023-02-15', 'Pending'),
+ ('RET003', 'ORD003', '2023-03-10', 'Pending'),
+ ('RET004', 'ORD004', '2023-04-25', 'Pending'),
+ ('RET005', 'ORD005', '2023-05-05', 'Pending'),
+ ('RET006', 'ORD006', '2023-06-15', 'Pending'),
+ ('RET007', 'ORD007', '2023-07-20', 'Pending')	
+ 
+ 
+ CREATE TABLE Refund (
+  refund_id VARCHAR(45) NOT NULL PRIMARY KEY,
+  return_id VARCHAR(45) NOT NULL,
+  refund_date DATE,
+  refund_status VARCHAR(50),
+  FOREIGN KEY (return_id) REFERENCES ReturnOrder(return_id)
+);
+
+
+CREATE TABLE CustomerSupportAgent (
+  agent_id INT PRIMARY KEY,
+  agent_name VARCHAR(50),
+  email VARCHAR(100),
+  phone_number VARCHAR(20),
+  user_id VARCHAR(45),
+  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+
+
+
+ALTER TABLE Orders
+DROP COLUMN assigned_agent_id;
+
+
+ALTER TABLE Orders
+ADD COLUMN assigned_agent_id VARCHAR(45),
+ADD CONSTRAINT fk_assigned_agent
+    FOREIGN KEY (assigned_agent_id)
+    REFERENCES customersupportagent(agent_id);
+

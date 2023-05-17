@@ -1,5 +1,11 @@
 package com.rms.controller;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -32,11 +38,14 @@ public class HomeController {
 	public String securedHome(ModelMap model) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		CustomUser user = null;
+//		principal.getName();
+//		System.out.println(principal.getName();
 		if (principal instanceof CustomUser) {
 			user = ((CustomUser) principal);
 		}
 
 		String name = user.getUser_id();
+		System.out.println("the reason"+name);
 		model.addAttribute("user_id", name);
 		model.addAttribute("message", "Welcome to the secured page");
 		return "home";
@@ -51,6 +60,21 @@ public class HomeController {
 	    }
 	 
 	 
+	 @RequestMapping(value="/csp/cspHome", method = RequestMethod.GET)
+	    public String backToHome(ModelMap model) {
 	 
+	        return "cspHome";
+	 
+	    }
+	 @RequestMapping(value="/csp/logout", method = RequestMethod.GET)
+	    public String logOut(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+		 HttpSession session = request.getSession(false);
+		    SecurityContextHolder.clearContext();
+		    if (session != null) {
+		        session.invalidate();
+		    }
+	        return "redirect:/";
+	 
+	    }
 	 
 }

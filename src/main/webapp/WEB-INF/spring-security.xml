@@ -21,17 +21,22 @@
 			/> -->
 
 
-	
+
 
 		<form-login login-page="/login"
 			default-target-url="/redirect"
 			authentication-success-handler-ref="customAuthenticationSuccessHandler"
 			authentication-failure-url="/loginError" />
 		<logout logout-success-url="/"
-			logout-url="/j_spring_security_logout" />
-		<csrf disabled="true" />
+			logout-url="/logout" />
+						<!-- logout-url="/j_spring_security_logout" /> -->
+		<csrf disabled="true" /> 
 	</http>
-	<beans:bean id="customAuthenticationSuccessHandler" class="com.rms.authentication.provider.CustomAuthenticationSuccessHandler" />
+	<beans:bean id="customAuthenticationSuccessHandler"
+		class="com.rms.authentication.provider.CustomAuthenticationSuccessHandler" />
+	<beans:bean id="customAuthenticationProvider"
+		class="com.rms.authentication.provider.CustomAuthenticationProvider" />
+
 
 	<authentication-manager erase-credentials="true">
 		<authentication-provider

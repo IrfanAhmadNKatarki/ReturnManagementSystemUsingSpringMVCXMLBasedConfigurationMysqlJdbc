@@ -3,47 +3,86 @@ package com.rms.model;
 import java.sql.Date;
 
 public class Order {
-    private int orderId;
-    private String customerName;
+    private String orderId;
+    private String customerId;
     private Date orderDate;
-
-    // Constructors, getters, and setters
-
-    // Default constructor
-    public Order() {
-    }
-
-    // Parameterized constructor
-    public Order(int orderId, String customerName, Date orderDate) {
+    private String status;
+    private boolean eligibleForReturn;
+    private String agentId;
+    // Constructor
+    public Order(String orderId, String customerId, Date orderDate, String status, boolean eligibleForReturn) {
         this.orderId = orderId;
-        this.customerName = customerName;
+        this.customerId = customerId;
         this.orderDate = orderDate;
+        this.status = status;
+        this.eligibleForReturn = eligibleForReturn;
     }
 
-    // Getters and setters
+    // Getters and Setters
 
-    public int getOrderId() {
+    public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderDate(Date date) {
+        this.orderDate = date;
     }
-}
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isEligibleForReturn() {
+        return eligibleForReturn;
+    }
+
+    public void setEligibleForReturn(boolean eligibleForReturn) {
+        this.eligibleForReturn = eligibleForReturn;
+    }
+
+    // toString method
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId='" + orderId + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", orderDate=" + orderDate +
+                ", status='" + status + '\'' +
+                ", eligibleForReturn=" + eligibleForReturn +
+                '}';
+    }
+
+	public String getAgentId() {
+		return agentId;
+	}
+
+	public void setAgentId(String agentId) {
+		this.agentId = agentId;
+	}
+}

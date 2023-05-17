@@ -14,7 +14,7 @@ public class CustomUser implements UserDetails {
     private String firstName;
     private String lastName;
     
-    
+    private String agentId;
 
     /* Spring Security related fields */
     private Collection<? extends GrantedAuthority> authorities;
@@ -124,6 +124,14 @@ public class CustomUser implements UserDetails {
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public String getAgentId() {
+		return agentId;
+	}
+
+	public void setAgentId(String agentId) {
+		this.agentId = agentId;
 	}
 
 	

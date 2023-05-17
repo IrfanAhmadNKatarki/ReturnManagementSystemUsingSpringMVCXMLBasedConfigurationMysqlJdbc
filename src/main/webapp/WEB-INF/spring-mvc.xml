@@ -39,21 +39,43 @@
 	<!-- Order Cycle ()() start -->
 
 	<bean id="orderDAO" class="com.rms.dao.OrderDAO">
-        <property name="jdbcTemplate" ref="jdbcTemplate" />
-    </bean>
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
 
-    <!-- Configure the OrderService -->
-    <bean id="orderService" class="com.rms.service.OrderService">
-        <property name="orderDAO" ref="orderDAO" />
-    </bean>
+	<!-- Configure the OrderService -->
+	<bean id="orderService" class="com.rms.service.OrderService">
+		<property name="orderDAO" ref="orderDAO" />
+	</bean>
 
-    <!-- Configure the OpenOrderController -->
-    <bean id="orderController" class="com.rms.controller.OrderController">
-        <property name="orderService" ref="orderService" />
-    </bean>
+	<!-- Configure the OpenOrderController -->
+	<bean id="orderController"
+		class="com.rms.controller.OrderController">
+		<property name="orderService" ref="orderService" />
+	</bean>
 	<!-- Order Cycle ()() end -->
+	<bean id="userDAOImpl" class="com.rms.dao.UserDAOImpl">
+		<constructor-arg ref="jdbcTemplate" /> <!-- Pass the JdbcTemplate dependency -->
+	</bean>
 
-	
+	<!-- Return and Refund Cycle Starts -->
+	<bean id="returnRefundDao" class="com.rms.dao.ReturnRefundDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- Configure the ReturnRefundService -->
+	<bean id="returnRefundService"
+		class="com.rms.service.ReturnRefundService">
+		<property name="returnRefundDao" ref="returnRefundDao" />
+	</bean>
+
+	<!-- Configure the ReturnRefundController -->
+	<bean id="returnRefundController"
+		class="com.rms.controller.ReturnRefundController">
+		<property name="returnRefundService"
+			ref="returnRefundService" />
+	</bean>
+
+	<!-- Return and Refund Cycle end -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />

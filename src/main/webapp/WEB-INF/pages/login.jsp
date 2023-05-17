@@ -17,7 +17,7 @@
         } 
         %>
         
-        <form name='loginForm' action="<c:url value='login' />" method='POST' class="mt-3">
+        <form name='loginForm' action="login"  method='POST' class="mt-3">
             <div class="form-group">
                 <label for="username">User:</label>
                 <input type='text' name='username' id="username" class="form-control" value=''>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Open Orders</title>
+<title>Assigned Orders</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <style>
@@ -19,11 +19,9 @@
 </head>
 <body>
 	<div class="container">
-		<h3 class="text-center">Open Orders Eligible for Return and
-			Refund</h3>
-			        <a href="logout" class="btn btn-default logout-link">Logout</a>
-			
-		<h1>Open Orders</h1>
+		<h3 class="text-center">Assigned Orders</h3>
+		<a href="logout" class="btn btn-default logout-link">Logout</a>
+		<h1>Assigned Orders</h1>
 		<table class="table">
 			<thead>
 				<tr>
@@ -34,18 +32,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${openOrders}" var="order">
+				<c:forEach items="${assignedOrders}" var="order">
 					<tr>
 						<td>${order.orderId}</td>
 						<td>${order.customerId}</td>
 						<td>${order.orderDate}</td>
-						<td><%-- <a href="<c:url value='/return/${order.orderId}' />">Return</a>
-							<a href="<c:url value='/refund/${order.orderId}' />">Refund</a> --%> 
-							<a href="assignorder?orderId=${order.orderId}" class="btn btn-primary">Assign</a>
-							<%-- <form action="assignorder" method="post">
-								<input type="hidden" name="_csrf" value="${_csrf.token}" /> <input
-									type="submit" value="Assign" class="btn btn-primary" />
-							</form> --%>
+						<td>
+							<a href="selectstatus?orderId=${order.orderId}">Return Status</a>
+							 &nbsp;&nbsp; 
+							 <a href="selectrefundstatus?orderId=${order.orderId}">Refund
+								Status</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -53,7 +49,6 @@
 
 		<div class="text-center">
 			<a href="cspHome" class="btn btn-default">Back to Homepage</a>
-			<a href="viewassignedorders" class="btn btn-default">Handle Your Assigned Orders</a>
 		</div>
 	</div>
 </body>

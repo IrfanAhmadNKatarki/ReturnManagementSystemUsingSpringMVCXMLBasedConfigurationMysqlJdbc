@@ -6,10 +6,19 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>CSP Homepage</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+.logout-link {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+</style>
 </head>
 <body>
     <div class="container">
         <h3 class="text-center">Customer Support Agent Homepage</h3>
+        		<a href="logout" class="btn btn-default logout-link">Logout</a>
+        
         <div class="text-center">
             <h4>Welcome, ${customUser.username}!</h4>
         </div>
