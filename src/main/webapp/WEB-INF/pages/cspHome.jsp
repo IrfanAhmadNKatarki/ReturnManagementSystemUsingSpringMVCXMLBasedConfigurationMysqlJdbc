@@ -40,6 +40,7 @@
             </div>
         </div>
         <div class="text-center">
+        	<a href="reportgenerated" class="btn btn-primary">View Report</a>
             <a href="openorders" class="btn btn-primary">Check Open Orders</a>
         </div>
     </div>

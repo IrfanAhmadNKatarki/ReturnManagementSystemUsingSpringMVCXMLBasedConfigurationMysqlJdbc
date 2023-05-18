@@ -41,7 +41,8 @@ public class RegistrationController {
 		customUser.setRole(role);
 		userServiceInt.register(customUser);
 
-		return new ModelAndView("home", "firstname", customUser.getFirstName());
+		return new ModelAndView("login", "firstname", customUser.getFirstName());
+		
 	}
 
 }

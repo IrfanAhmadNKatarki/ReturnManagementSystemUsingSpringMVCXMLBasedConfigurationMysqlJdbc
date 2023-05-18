@@ -37,5 +37,13 @@ public class OrderService {
 		// TODO Auto-generated method stub
 		return orderDAO.getAssignedOrders(agent_id);
 	}
+
+
+//	public List<Order> getCustomerOrders(String customer_id) {
+//		// TODO Auto-generated method stub
+//		System.out.println("In getCustomerOrders "+customer_id);
+//		return orderDAO.getOrdersByCustomer(customer_id);
+//
+//	}
 	
 }

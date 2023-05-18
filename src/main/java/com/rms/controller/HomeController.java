@@ -77,4 +77,15 @@ public class HomeController {
 	 
 	    }
 	 
+	 @RequestMapping(value="/customer/logout", method = RequestMethod.GET)
+	    public String CustomerlogOut(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+		 HttpSession session = request.getSession(false);
+		    SecurityContextHolder.clearContext();
+		    if (session != null) {
+		        session.invalidate();
+		    }
+	        return "redirect:/";
+	 
+	    }
+	 
 }

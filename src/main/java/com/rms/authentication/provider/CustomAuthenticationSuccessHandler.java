@@ -29,7 +29,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 				return role.getAuthority().equals("ROLE_USER");
 			}
 		})) {
-            response.sendRedirect(request.getContextPath() + "/customer/home");
+            response.sendRedirect(request.getContextPath() + "/customer/customerHome");
         } else {
             response.sendRedirect(request.getContextPath() + "/helloworld");
         }

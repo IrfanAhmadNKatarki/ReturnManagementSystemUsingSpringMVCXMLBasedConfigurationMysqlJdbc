@@ -110,3 +110,9 @@ ADD CONSTRAINT fk_assigned_agent
     FOREIGN KEY (assigned_agent_id)
     REFERENCES customersupportagent(agent_id);
 
+getOpenOrders
+		String query = "SELECT * FROM orders WHERE status = 'Delivered' AND eligible_for_return = 1";
+
+
+ALTER TABLE `returnorder`
+ADD COLUMN `return_reason` varchar(255) DEFAULT NULL;

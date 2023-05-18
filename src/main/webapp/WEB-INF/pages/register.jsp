@@ -82,7 +82,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <button type="submit" class="btn btn-primary">Register</button>
-                    <a href="home" class="btn btn-secondary">Home</a>
+                    <a href="login" class="btn btn-secondary">Home</a>
                 </div>
             </div>
 

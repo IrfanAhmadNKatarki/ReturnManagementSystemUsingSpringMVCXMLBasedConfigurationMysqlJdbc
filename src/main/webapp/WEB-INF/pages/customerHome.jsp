@@ -8,9 +8,17 @@
             text-decoration: none;
         }
     </style>
+    <style>
+.logout-link {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+}
+</style>
 </head>
 <body>
     <div class="container">
+    <a href="logout" class="btn btn-default logout-link">Logout</a>
         <h2>Welcome to the Customer Home!</h2>
 <%--          <a href="${pageContext.request.contextPath}/customer/createReturnOrder" class="btn btn-link">Create and Update Return Order Request</a>
     	    

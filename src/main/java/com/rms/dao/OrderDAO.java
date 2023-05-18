@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import com.rms.model.Order;
 
@@ -53,10 +53,31 @@ public class OrderDAO {
 		jdbcTemplate.update(query, agentId, orderId);
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<Order> getAssignedOrders(String agent_id) {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM orders WHERE assigned_agent_id = ?";
 		return jdbcTemplate.query(sql, new Object[] { agent_id }, new BeanPropertyRowMapper<>(Order.class));
 	}
+
+//	@SuppressWarnings("deprecation")
+//	public List<Order> getOrdersByCustomer(String customerId) {
+//	    String sql = "SELECT * FROM orders WHERE customer_id = ?";
+//	    return jdbcTemplate.query(sql, new Object[]{customerId}, new RowMapper<Order>() {
+//	        @Override
+//	        public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
+//	            Order order = new Order();
+//	            order.setOrderId(rs.getString("order_id"));
+//	            order.setOrderDate(rs.getDate("order_date"));
+//	            order.setProductName(rs.getString("product_name"));
+//	           
+//	            // Map other properties of the Order entity
+//	            System.out.println(order.getOrderId());
+//	            System.out.println(order.getOrderDate());
+//	            
+//	            return order;
+//	        }
+//	    });
+//	}
 
 }

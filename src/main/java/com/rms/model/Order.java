@@ -9,6 +9,7 @@ public class Order {
     private String status;
     private boolean eligibleForReturn;
     private String agentId;
+    private String productName;
     // Constructor
     public Order(String orderId, String customerId, Date orderDate, String status, boolean eligibleForReturn) {
         this.orderId = orderId;
@@ -67,22 +68,33 @@ public class Order {
 
     // toString method
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId='" + orderId + '\'' +
-                ", customerId='" + customerId + '\'' +
-                ", orderDate=" + orderDate +
-                ", status='" + status + '\'' +
-                ", eligibleForReturn=" + eligibleForReturn +
-                '}';
-    }
+
 
 	public String getAgentId() {
 		return agentId;
 	}
 
+	public Order(String orderId, String customerId, Date orderDate, String status, boolean eligibleForReturn,
+			String agentId, String productName) {
+		super();
+		this.orderId = orderId;
+		this.customerId = customerId;
+		this.orderDate = orderDate;
+		this.status = status;
+		this.eligibleForReturn = eligibleForReturn;
+		this.agentId = agentId;
+		this.productName = productName;
+	}
+
 	public void setAgentId(String agentId) {
 		this.agentId = agentId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 }

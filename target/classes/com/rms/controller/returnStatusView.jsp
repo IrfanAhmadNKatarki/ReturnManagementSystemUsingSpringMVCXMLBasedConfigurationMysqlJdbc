@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Customer Orders </title>
+    <title>Return Status</title>
 </head>
 <body>
-
+    <h2>Return Status</h2>
+    <p>${returnStatus}</p>
 </body>
 </html>

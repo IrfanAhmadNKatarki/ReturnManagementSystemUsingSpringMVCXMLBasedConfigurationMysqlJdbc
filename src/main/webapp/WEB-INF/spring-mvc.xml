@@ -76,6 +76,50 @@
 	</bean>
 
 	<!-- Return and Refund Cycle end -->
+	
+	
+	<!-- Customer Cycle Starts -->
+	<bean id="customerDao" class="com.rms.dao.CustomerDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- Configure the ReturnRefundService -->
+	<bean id="customerService"
+		class="com.rms.service.CustomerService">
+		<property name="customerDao" ref="customerDao" />
+	</bean>
+
+	<!-- Configure the ReturnRefundController -->
+	<bean id="customerController"
+		class="com.rms.controller.CustomerController">
+		<property name="customerService"
+			ref="customerService" />
+	</bean>
+
+	<!--Customer Cycle end -->
+	
+	<!--Report Cycle Start -->
+	
+		<bean id="reportDao" class="com.rms.dao.ReportDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- Configure the ReturnRefundService -->
+	<bean id="reportService"
+		class="com.rms.service.ReportService">
+		<property name="reportDao" ref="reportDao" />
+	</bean>
+
+	<!-- Configure the ReturnRefundController -->
+	<bean id="reportController"
+		class="com.rms.controller.ReportController">
+		<property name="reportService"
+			ref="reportService" />
+	</bean>
+	<!--Report Cycle end -->
+	
+	
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/pages/" />
