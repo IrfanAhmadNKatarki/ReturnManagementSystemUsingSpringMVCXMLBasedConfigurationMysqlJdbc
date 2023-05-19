@@ -1,31 +1,43 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Customer Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .btn-link {
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .btn-default {
+            background-color: #f8f9fa;
             color: #007bff;
-            text-decoration: none;
+            border-color: #007bff;
+        }
+        .btn-default:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .logout-link {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1;
         }
     </style>
-    <style>
-.logout-link {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-}
-</style>
 </head>
 <body>
-    <div class="container">
     <a href="logout" class="btn btn-default logout-link">Logout</a>
-        <h2>Welcome to the Customer Home!</h2>
-<%--          <a href="${pageContext.request.contextPath}/customer/createReturnOrder" class="btn btn-link">Create and Update Return Order Request</a>
-    	    
- 		<a href="${pageContext.request.contextPath}/customer/viewReturnOrderStatus" class="btn btn-link">View Return Order Status</a>
-        <a href="${pageContext.request.contextPath}/customer/viewRefundStatus" class="btn btn-link">View Refund Status</a>  --%>
-        <a href="${pageContext.request.contextPath}/customer/viewAllOrders" class="btn btn-link">Your Orders</a>
-    
+    <div class="container">
+        <h2>Every Return excites you!</h2>
+        <div class="mt-4">
+            <a href="${pageContext.request.contextPath}/customer/viewAllOrders" class="btn btn-primary">Your Orders</a>
+        </div>
     </div>
 </body>
 </html>

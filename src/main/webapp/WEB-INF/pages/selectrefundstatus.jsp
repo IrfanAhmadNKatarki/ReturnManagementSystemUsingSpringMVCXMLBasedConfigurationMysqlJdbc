@@ -29,13 +29,15 @@
 				</select>
 			</div>
 
-			<input type="hidden" name="orderId" value="${param.orderId}">
+		<input type="hidden" name="orderId" value="${param.orderId}">
 
 			<div class="text-center">
 				<button type="submit" class="btn btn-primary">Save</button>
+				
 				<a href="viewassignedorders" class="btn btn-default">Cancel</a>
 			</div>
 		</form>
+			
 	</div>
 </body>
 </html>

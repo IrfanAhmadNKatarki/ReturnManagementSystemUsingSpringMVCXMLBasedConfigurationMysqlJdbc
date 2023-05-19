@@ -5,6 +5,6 @@
 </head>
 <body>
 <h3>Hello World!</h3>
-<h4>Hi ${username}, ${message}</h4>
+<h4>Hi ${user_id}, ${message}</h4>
 </body>
 </html>

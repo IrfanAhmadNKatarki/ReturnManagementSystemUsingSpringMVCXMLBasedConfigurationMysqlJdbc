@@ -17,23 +17,33 @@
         }
         th, td {
             padding: 10px;
-            text-align: left;
+            text-align: center; /* Center-align the data */
             border-bottom: 1px solid #ddd;
+            font-weight: bold;
         }
         th {
             background-color: #f2f2f2;
         }
     </style>
     <style>
-.logout-link {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-}
-</style>
+        .logout-link {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<a href="logout" class="btn btn-default logout-link">Logout</a>
+    <a href="logout" class="btn btn-primary logout-link">Logout</a>
     <h2>Your Orders</h2>
     <table class="table">
         <thead>
@@ -72,6 +82,6 @@
             </c:forEach>
         </tbody>
     </table>
-        <a href="customerHome" class="btn btn-primary">Back to Homepage</a>
+    <a href="customerHome" class="btn btn-primary">Back to Homepage</a>
 </body>
 </html>

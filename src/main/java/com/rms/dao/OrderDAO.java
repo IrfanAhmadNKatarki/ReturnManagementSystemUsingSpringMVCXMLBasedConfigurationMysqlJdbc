@@ -3,12 +3,14 @@ package com.rms.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.rms.model.Order;
+import com.rms.model.ReturnOrder;
 
 public class OrderDAO {
 
@@ -19,7 +21,9 @@ public class OrderDAO {
 	}
 
 	public List<Order> getOpenOrders() {
-		String query = "SELECT * FROM orders WHERE status = 'Delivered' AND eligible_for_return = 1";
+//		String query = "SELECT * FROM orders WHERE status = 'Delivered' AND eligible_for_return = 1";
+		String query = "SELECT o.customer_id, o.order_id, o.order_date FROM orders o JOIN returnorder r ON o.order_id = r.order_id\r\n"
+				+ "WHERE (r.admin_approval = false OR r.admin_approval = 0) AND (r.assigned_agent_id IS NULL OR r.assigned_agent_id = 0)";
 //		String query = "SELECT * FROM orders WHERE status = 'Delivered' AND eligible_for_return = 1 AND assigned_agent_id = 'NULL'";
 
 		return jdbcTemplate.query(query, new RowMapper<Order>() {
@@ -36,11 +40,6 @@ public class OrderDAO {
 		});
 	}
 
-	public void updateOrder(Order order) {
-		String query = "UPDATE orders SET assigned_agent_id = ? WHERE order_id = ?";
-		jdbcTemplate.update(query, order.getAgentId(), order.getOrderId());
-	}
-
 	public Order getOrderById(String orderId) {
 		String query = "SELECT * FROM orders WHERE order_id = ?";
 		RowMapper<Order> rowMapper = new BeanPropertyRowMapper<>(Order.class);
@@ -48,36 +47,25 @@ public class OrderDAO {
 		return order;
 	}
 
+
+	
 	public void assignOrderToCustomerSupportAgent(String orderId, String agentId) {
-		String query = "UPDATE orders SET assigned_agent_id = ? WHERE order_id = ?";
+		String query = "UPDATE returnorder SET assigned_agent_id = ?, admin_approval = 1 WHERE order_id = ?";
 		jdbcTemplate.update(query, agentId, orderId);
 	}
+	
 
-	@SuppressWarnings("deprecation")
-	public List<Order> getAssignedOrders(String agent_id) {
+	
+	public List<Map<String, Object>> getAssignedOrders(String agent_id) {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * FROM orders WHERE assigned_agent_id = ?";
-		return jdbcTemplate.query(sql, new Object[] { agent_id }, new BeanPropertyRowMapper<>(Order.class));
+		System.out.println("In assigned orders"+agent_id);
+		String sql = "SELECT o.order_id, o.customer_id, r.return_id, r.return_date, r.return_reason FROM orders o JOIN returnorder r ON r.order_id = o.order_id WHERE r.assigned_agent_id = ?";
+		 return jdbcTemplate.queryForList(sql, agent_id);
 	}
+	
+	
 
-//	@SuppressWarnings("deprecation")
-//	public List<Order> getOrdersByCustomer(String customerId) {
-//	    String sql = "SELECT * FROM orders WHERE customer_id = ?";
-//	    return jdbcTemplate.query(sql, new Object[]{customerId}, new RowMapper<Order>() {
-//	        @Override
-//	        public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
-//	            Order order = new Order();
-//	            order.setOrderId(rs.getString("order_id"));
-//	            order.setOrderDate(rs.getDate("order_date"));
-//	            order.setProductName(rs.getString("product_name"));
-//	           
-//	            // Map other properties of the Order entity
-//	            System.out.println(order.getOrderId());
-//	            System.out.println(order.getOrderDate());
-//	            
-//	            return order;
-//	        }
-//	    });
-//	}
+
+
 
 }

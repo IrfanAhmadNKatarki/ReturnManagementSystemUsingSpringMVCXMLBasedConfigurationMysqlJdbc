@@ -23,15 +23,6 @@
             <h4>Welcome, ${customUser.username}!</h4>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Customer Inquiries</h4>
-                <ul class="list-group">
-                    <c:forEach var="inquiry" items="${customerInquiries}">
-                        <li class="list-group-item">${inquiry}</li>
-                    </c:forEach>
-                </ul>
-            </div>
             <div class="col-md-6">
                 <h4>Terms and Conditions</h4>
                 <p>This page contains confidential information and is intended solely for authorized users. Unauthorized access, use, or dissemination is strictly prohibited.</p>

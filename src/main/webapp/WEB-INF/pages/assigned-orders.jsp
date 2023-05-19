@@ -25,28 +25,33 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Order ID</th>
 					<th>Customer ID</th>
-					<th>Order Date</th>
-					<th>Actions</th>
+					<th>Return ID</th>
+					<th>Return Date</th>
+					<th>Return Reason</th>
+					<th>Order Id</th>
+					<th>&nbsp;&nbsp;&nbsp;&nbsp;Actions</th> 
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${assignedOrders}" var="order">
 					<tr>
-						<td>${order.orderId}</td>
-						<td>${order.customerId}</td>
-						<td>${order.orderDate}</td>
-						<td>
-							<a href="selectstatus?orderId=${order.orderId}">Return Status</a>
-							 &nbsp;&nbsp; 
-							 <a href="selectrefundstatus?orderId=${order.orderId}">Refund
-								Status</a></td>
+						<td>${order.customer_id}</td>
+						<td>${order.return_id}</td>
+						<td>${order.return_date}</td>
+						<td>${order.return_reason}</td>
+						<td>${order.order_id}</td> 
+						
+
+						<td><a href="selectstatus?orderId=${order.order_id}" class="btn btn-primary">Return Status</a>
+						&nbsp;&nbsp; 
+						<a href="selectrefundstatus?orderId=${order.order_id}"  class="btn btn-primary">Refund Status</a></td>
+								
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-
+ 	<input type="hidden" name="orderId" value="${param.orderId}"> 
 		<div class="text-center">
 			<a href="cspHome" class="btn btn-default">Back to Homepage</a>
 		</div>

@@ -35,7 +35,7 @@
         </div>
         
         <div class="text-center">
-            <a href="customerHome" class="btn btn-primary">Back to Homepage</a>
+            <a href="csp Home" class="btn btn-primary">Back to Homepage</a>
         </div>
     </div>
 </body>

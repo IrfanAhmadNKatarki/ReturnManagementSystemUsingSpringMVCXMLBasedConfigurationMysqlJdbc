@@ -66,15 +66,22 @@ public class CustomerDao {
 	    jdbcTemplate.update(sql, returnId, orderId, returnReason);
 	}
 
+	@SuppressWarnings("deprecation")
 	public String customerCheckReturnStatus(String orderId) {
 		// TODO Auto-generated method stub
 		String sql = "select return_status from returnorder where order_id = ? ";
+		try {
 		return jdbcTemplate.queryForObject(sql, new Object[]{orderId}, String.class);
-
+		}
+		catch (EmptyResultDataAccessException e) {
+			return "No return status available";
+		}
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public String customerCheckRefundStatus(String orderId) {
+		System.out.println("In customer check refund status dao "+orderId);
 	    String sql = "SELECT refund_status FROM refund WHERE return_id = (SELECT return_id FROM returnorder WHERE order_id = ?)";
 	    try {
 	        return jdbcTemplate.queryForObject(sql, new Object[]{orderId}, String.class);

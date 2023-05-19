@@ -95,7 +95,7 @@ public class CustomerController {
 		customerService.updateAfterReturnIdExist(returnReason, orderId);
 		System.out.println("This is " + orderId);
 
-		return "redirect:/customer/home";
+		return "redirect:/customer/customerHome";
 
 	}
 
@@ -108,7 +108,7 @@ public class CustomerController {
 		customerService.createNewReturnRequest(returnReason, orderId, returnId);
 		System.out.println("This is " + orderId);
 
-		return "redirect:/customer/home";
+		return "redirect:/customer/customerHome";
 
 	}
 

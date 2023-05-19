@@ -1,9 +1,11 @@
 package com.rms.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.rms.dao.OrderDAO;
 import com.rms.model.Order;
+import com.rms.model.ReturnOrder;
 
 public class OrderService {
 
@@ -23,17 +25,10 @@ public class OrderService {
         orderDAO.assignOrderToCustomerSupportAgent(orderId, agentId);
     }
 
-	public void assignOrder(String orderId, String agent_id) {
-		// TODO Auto-generated method stub
-		Order order = orderDAO.getOrderById(orderId);
-        if (order != null) {
-            order.setAgentId(agent_id);
-            orderDAO.updateOrder(order);
-        }
-    }
 
 
-	public List<Order> getAssignedOrders(String agent_id) {
+
+	public List<Map<String, Object>> getAssignedOrders(String agent_id) {
 		// TODO Auto-generated method stub
 		return orderDAO.getAssignedOrders(agent_id);
 	}

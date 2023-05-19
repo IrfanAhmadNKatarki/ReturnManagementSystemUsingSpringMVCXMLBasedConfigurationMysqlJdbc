@@ -116,3 +116,14 @@ getOpenOrders
 
 ALTER TABLE `returnorder`
 ADD COLUMN `return_reason` varchar(255) DEFAULT NULL;
+
+
+ALTER TABLE returnorder
+ADD COLUMN admin_approval BOOLEAN NOT NULL DEFAULT FALSE;
+
+
+
+SELECT o.customer_id, o.order_id, o.order_date
+FROM rmssecured.orders o
+JOIN returnorder r ON o.order_id = r.order_id
+WHERE r.admin_approval = false AND r.assigned_agent_id IS NULL;
